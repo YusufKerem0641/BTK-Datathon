@@ -7,7 +7,7 @@ sutun = 'Basvuru Yasi'
 frekanslar = df[sutun].value_counts()
 
 # 140'tan az olan değerleri tespit et
-az_bulunanlar = frekanslar[frekanslar < 51].index
+az_bulunanlar = frekanslar[frekanslar < 55].index
 
 # 140'tan az bulunan değerleri "Diğer" ile değiştir
 df[sutun] = df[sutun].replace(az_bulunanlar, 'Gelecekten')

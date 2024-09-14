@@ -1,7 +1,7 @@
 import pandas as pd
 
 # CSV dosyasını oku
-df = pd.read_csv('guncellenmis_train.csv', low_memory=False)
+df = pd.read_csv('test_x.csv', low_memory=False)
 
 # Türkçe ayları İngilizceye çevirme fonksiyonu
 def ayirici(data):
@@ -30,11 +30,10 @@ def ayirici(data):
     return None
 
 df['Dogum Tarihi'] = df['Dogum Tarihi'].astype(str)
-df['Basvuru Yili'] = df['Basvuru Yili'].astype(str)
+df['Basvuru Yili'] = df['Basvuru Yili'].astype(int)
 df['Basvuru Yasi'] = df['Basvuru Yasi'].astype(str)
 # 'Dogum Tarihi' ve 'Basvuru Yili' sütunlarındaki tarihleri çevir ve integer yap
 df['Dogum Tarihi'] = df['Dogum Tarihi'].apply(ayirici)
-df['Basvuru Yili'] = df['Basvuru Yili'].apply(ayirici)
 
 # Başvuru yaşını hesaplama (yıl farkını bulmak)
 def hesapla_basvuru_yasi(row):
@@ -49,6 +48,6 @@ df['Basvuru Yasi'] = df.apply(hesapla_basvuru_yasi, axis=1)
 print(df[['Basvuru Yili', 'Dogum Tarihi', 'Basvuru Yasi']].head(60))
 
 # Yeni veriyi kaydetmek isterseniz
-df.to_csv('guncellenmis_train.csv', index=False)
+df.to_csv('test_x.csv', index=False)
 
 print("Veri kaydedildi ve yaşlar hesaplandı.")
