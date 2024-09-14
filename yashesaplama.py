@@ -1,13 +1,11 @@
 import pandas as pd
 
 # CSV dosyasını oku
-df = pd.read_csv('test_x.csv', low_memory=False)
+df = pd.read_csv('guncellenmis_train.csv', low_memory=False)
 
 # Türkçe ayları İngilizceye çevirme fonksiyonu
 def ayirici(data):
     if isinstance(data, str):
-
-        print("aaaaaaaaaa")
         ayiricilar = [".", ",", "/", " ", "-"]  # ":" ekleyerek saati de dahil ettik
         listData = []
 
@@ -17,12 +15,15 @@ def ayirici(data):
             if len(listData) > 2:
                 break
 
+        if len(listData) > 2:
         # Yılın iki veya dört basamaklı olabileceğini kontrol et
-        for parca in listData:
+            parca = listData[2]
             parca = parca.split(" ")[0]
             parca = parca.strip()  # Eğer başında veya sonunda boşluk varsa temizler
             if len(parca) == 4 and parca.isdigit():  # 4 basamaklı yıl
                 return int(parca)  # Yılı integer olarak döndür
+            if len(listData[0]) == 4 and parca.isdigit():
+                return int(listData[0])  # Yılı integer olarak döndür
             elif len(parca) == 2 and parca.isdigit():  # 2 basamaklı yıl
                 return int("19" + parca) if int(parca) > 50 else int("20" + parca)  # Integer olarak döndür
             print(listData)
@@ -48,6 +49,6 @@ df['Basvuru Yasi'] = df.apply(hesapla_basvuru_yasi, axis=1)
 print(df[['Basvuru Yili', 'Dogum Tarihi', 'Basvuru Yasi']].head(60))
 
 # Yeni veriyi kaydetmek isterseniz
-df.to_csv('test_x.csv', index=False)
+df.to_csv('guncellenmis_train.csv', index=False)
 
 print("Veri kaydedildi ve yaşlar hesaplandı.")
