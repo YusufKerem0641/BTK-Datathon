@@ -11,8 +11,8 @@ df[sutun] = pd.to_numeric(df[sutun], errors='coerce')
 df[sutun].fillna(0, inplace=True)
 
 # Hatalı puanı yüksek olan ID'leri alma
-high_error_ids = df[df[sutun] > 20]['id'].tolist()
-eksi_high_error_ids = df[df[sutun] < -20]['id'].tolist()
+high_error_ids = df[df[sutun] > 25]['id'].tolist()
+eksi_high_error_ids = df[df[sutun] < -25]['id'].tolist()
 
 high_error_ids = high_error_ids + eksi_high_error_ids
 

@@ -1,6 +1,6 @@
 import pandas as pd
 
-sutun = 'Basvuru Yasi'
+sutun = 'Lise Mezuniyet Notu'
 # low_memory=False ile CSV dosyasını oku
 df = pd.read_csv('test_x.csv', low_memory=False)
 
